@@ -1,0 +1,32 @@
+{
+  "name": "personal-link-saver",
+  "version": "1.0.0",
+  "description": "a personal link saver for use by myself and my wife. ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js", 
+    "server": "nodemon server.js"
+  },
+  "keywords": [
+    "full",
+    "stack",
+    "js",
+    "javascript",
+    "mongodb",
+    "node"
+  ],
+  "author": "Tim Beckett",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.1.0",
+    "express": "^4.17.1",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.14"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
