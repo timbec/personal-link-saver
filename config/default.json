@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://timbec:tB23mememe@cluster0-bjjk6.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://tim:tB23mememe@cluster0-vgp6q.mongodb.net/test?retryWrites=true&w=majority", 
+    "jwtSecret": "tB23mememe"
 }
