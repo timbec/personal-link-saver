@@ -4,7 +4,7 @@
   "description": "a personal link saver for use by myself and my wife. ",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js", 
+    "start": "node server.js",
     "server": "nodemon server.js"
   },
   "keywords": [
