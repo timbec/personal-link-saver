@@ -1,5 +1,6 @@
 const express = require('express'); 
 const router = express.Router(); 
+const auth = require('../middleware/auth'); 
 const bcrypt = require('bcryptjs'); 
 const jwt = require('jsonwebtoken'); 
 const config = require('config'); 
@@ -65,6 +66,22 @@ router.post(
         }); 
 
 
+    } catch(err) {
+        console.error(err.message); 
+        res.status(500).send('Server Error'); 
+    }
+}); 
+
+// @route   GET    api/links
+// @desc    Get logged in user's links
+// @access Private
+router.get('/', auth, async(req, res) => {
+    try {
+        const users = await User.find().sort({
+			date: -1
+		});
+        console.log(users);
+        res.json(users);
     } catch(err) {
         console.error(err.message); 
         res.status(500).send('Server Error'); 
