@@ -1,18 +1,27 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-dom'; 
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 import Navbar from './components/layouts/Navbar';
+import Home from './components/pages/Home'; 
+import About from './components/pages/About'; 
 
+import LinkState from './context/link/LinkContext'; 
 import './App.css';
 
-
+console.log(LinkState); 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-          <Navbar />
-      </header>
-    </div>
-  );
+      <LinkState>
+          <Router>
+            <Fragment>    
+              <Navbar />
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route exact path='/about' component={About} />
+                </Switch>
+          </Fragment>
+        </Router>
+      </LinkState>   
+  )
 }
 
 export default App;
