@@ -13,12 +13,24 @@ import {
     CLEAR_FILTER
 } from '../types'; 
 
-console.log(linkReducer); 
-
 const LinkState = props => {
     const initialState = {
         links: [
-
+            {
+                title: 'Guardian Link', 
+                url: 'https://guardian.co.uk', 
+                category: 'News'
+            }, 
+            {
+                title: 'NYT', 
+                url: 'https://nytimes.com', 
+                category: 'News'
+            }, 
+            {
+                title: 'Udemy', 
+                url: 'https://udemy.com', 
+                category: 'Tech'
+            }
         ]
     }; 
 

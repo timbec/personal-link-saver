@@ -7,7 +7,7 @@ import About from './components/pages/About';
 import LinkState from './context/link/LinkState'; 
 import './App.css';
 
-console.log(LinkState); 
+ 
 const App = () => {
   return (
       <LinkState>
