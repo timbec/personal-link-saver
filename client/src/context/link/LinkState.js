@@ -2,33 +2,23 @@ import React, { useReducer } from 'react';
 import uuid from 'uuid'; 
 import LinkContext from './LinkContext'; 
 import linkReducer from './LinkReducer'; 
+
 import {
     ADD_LINK, 
     DELETE_LINK,
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_LINK,
-    FILTER_LINKS
+    FILTER_LINKS,
+    CLEAR_FILTER
 } from '../types'; 
+
+console.log(linkReducer); 
 
 const LinkState = props => {
     const initialState = {
         links: [
-            {
-                title: 'Guardian Link', 
-                url: 'https://guardian.co.uk', 
-                category: 'News'
-            }, 
-            {
-                title: 'NYT', 
-                url: 'https://nytimes.com', 
-                category: 'News'
-            }, 
-            {
-                title: 'Udemy', 
-                url: 'https://udemy.com', 
-                category: 'Tech'
-            }
+
         ]
     }; 
 

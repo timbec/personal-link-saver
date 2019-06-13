@@ -4,7 +4,7 @@ import Navbar from './components/layouts/Navbar';
 import Home from './components/pages/Home'; 
 import About from './components/pages/About'; 
 
-import LinkState from './context/link/LinkContext'; 
+import LinkState from './context/link/LinkState'; 
 import './App.css';
 
 console.log(LinkState); 

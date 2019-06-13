@@ -1,5 +1,5 @@
 import { createContext } from 'react'; 
 
-const linkContext = createContext(); 
+const LinkContext = createContext(); 
 
-export default linkContext; 
+export default LinkContext; 
