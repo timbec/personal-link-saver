@@ -16,3 +16,6 @@ Mongoose allows us to create Models.
 This helped solve error had running npm: 
 
 https://stackoverflow.com/questions/42813342/react-createelement-type-is-invalid-expected-a-string
+
+have to look up the `spread` operator as don't really understand it: 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
