@@ -4,6 +4,7 @@ import {
     CLEAR_LINKS,
     ADD_LINK,
     DELETE_LINK,
+    UPDATE_LINK,
     GET_LINKS,
     GET_LINK,
     SET_CURRENT,
@@ -22,6 +23,11 @@ export default (state, action) => {
             return {
                 ...state,
                 links: [...state.links, action.payload]
+            }
+        case UPDATE_LINK:
+            return {
+                ...state,
+                links: state.links.map(link => link.id === action.payload.id ? action.payload : link)
             }
         case DELETE_LINK:
             return {

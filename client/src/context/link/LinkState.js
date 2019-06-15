@@ -37,30 +37,33 @@ const LinkState = props => {
 
     const [state, dispatch] = useReducer(linkReducer, initialState);
 
-    //Add Contact 
+    //Add Link
     const addLink = link => {
         console.log(link);
         link.id = uuid.v4();
         dispatch({ type: ADD_LINK, payload: link })
     }
 
-    // Delete Contact 
+    // Delete Link
     const deleteLink = id => {
         console.log(id);
         dispatch({ type: DELETE_LINK, payload: id })
     }
 
-    // Set Current Contact 
+    // Set Current Link
     const setCurrent = link => {
         dispatch({ type: SET_CURRENT, payload: link })
     }
 
-    // Clear Current Contact 
+    // Clear Current Link
     const clearCurrent = () => {
         dispatch({ type: CLEAR_CURRENT })
     }
 
-    // Update Contact
+    // Update Link
+    const updateLink = link => {
+        dispatch({ type: UPDATE_LINK, payload: link })
+    }
 
     // Filter Contacts 
 
@@ -74,7 +77,8 @@ const LinkState = props => {
                 addLink,
                 deleteLink,
                 setCurrent,
-                clearCurrent
+                clearCurrent,
+                updateLink
             }}
         >
             {props.children}

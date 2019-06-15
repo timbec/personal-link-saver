@@ -1,9 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import LinkContext from '../../context/link/LinkContext';
 
 const LinkForm = () => {
 
     const linkContext = useContext(LinkContext);
+
+    const { addLink, clearCurrent, updateLink, current } = linkContext;
+
+    useEffect(() => {
+        if (current != null) {
+            setLink(current)
+        } else {
+            setLink({
+                title: '',
+                url: '',
+                category: ''
+            })
+        }
+    }, [linkContext, current])
 
     const onChange = e => setLink({ ...link, [e.target.name]: e.target.value })
 
@@ -16,18 +30,21 @@ const LinkForm = () => {
     const onSubmit = e => {
         e.preventDefault();
         linkContext.addLink(link);
-        console.log(link);
-        setLink({
-            title: '',
-            url: '',
-            category: ''
-        });
+        if (current === null) {
+            addLink(link);
+        } else {
+            updateLink(link);
+        }
+    }
+
+    const clearAll = () => {
+        clearCurrent();
     }
 
     const { title, url, category } = link;
     return (
         <form onSubmit={onSubmit}>
-            <h2 className="text-primary">Add Link</h2>
+            <h2 className="text-primary">{current ? 'Edit Link' : 'Add Link'}</h2>
             <input
                 type="text"
                 placeholder="title"
@@ -50,7 +67,20 @@ const LinkForm = () => {
                 onChange={onChange}
             />
 
-            <input type="submit" value="Add Link" />
+            <input
+                type="submit"
+                value={current ? 'Update Link' : 'Add Link'}
+            />
+
+            {current && (
+                <div>
+                    <button className="btn btn-light btn-black"
+                        onClick={clearAll}>
+                        Clear
+                    </button>
+                </div>
+            )}
+
         </form>
     )
 }
