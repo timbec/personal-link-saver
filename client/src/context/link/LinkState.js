@@ -32,7 +32,8 @@ const LinkState = props => {
                 category: 'Tech'
             }
         ],
-        current: null
+        current: null,
+        filtered: null
     };
 
     const [state, dispatch] = useReducer(linkReducer, initialState);
@@ -66,19 +67,28 @@ const LinkState = props => {
     }
 
     // Filter Contacts 
+    const filterLinks = text => {
+        dispatch({ type: FILTER_LINKS, payload: text })
+    }
 
     // Clear Filter
+    const clearFilter = () => {
+        dispatch({ type: CLEAR_FILTER })
+    }
 
     return (
         <LinkContext.Provider
             value={{
                 links: state.links,
                 current: state.current,
+                filtered: state.filtered,
                 addLink,
                 deleteLink,
                 setCurrent,
                 clearCurrent,
-                updateLink
+                updateLink,
+                filterLinks,
+                clearFilter
             }}
         >
             {props.children}

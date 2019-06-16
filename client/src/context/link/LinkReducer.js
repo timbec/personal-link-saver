@@ -8,7 +8,9 @@ import {
     GET_LINKS,
     GET_LINK,
     SET_CURRENT,
-    CLEAR_CURRENT
+    CLEAR_CURRENT,
+    FILTER_LINKS,
+    CLEAR_FILTER
 } from '../types';
 
 export default (state, action) => {
@@ -44,6 +46,20 @@ export default (state, action) => {
             return {
                 ...state,
                 current: null,
+                loading: false
+            }
+        case FILTER_LINKS:
+            return {
+                ...state,
+                filtered: state.links.filter(link => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return link.title.match(regex) || link.category.match(regex);
+                })
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filter: null,
                 loading: false
             }
         case GET_LINKS:

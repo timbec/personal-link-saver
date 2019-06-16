@@ -19,3 +19,5 @@ https://stackoverflow.com/questions/42813342/react-createelement-type-is-invalid
 
 have to look up the `spread` operator as don't really understand it: 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+What does `useEffect` hook do? 

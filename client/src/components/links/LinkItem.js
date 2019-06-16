@@ -9,6 +9,7 @@ const LinkItem = ({ link }) => {
     const { id, title, url, category } = link;
 
     const onDelete = () => {
+        console.log(id);
         deleteLink(id);
         clearCurrent();
     }
@@ -31,7 +32,7 @@ const LinkItem = ({ link }) => {
                 >Delete</button>
             </p>
 
-        </div >
+        </div>
     )
 }
 
