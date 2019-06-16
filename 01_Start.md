@@ -20,4 +20,4 @@ https://stackoverflow.com/questions/42813342/react-createelement-type-is-invalid
 have to look up the `spread` operator as don't really understand it: 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
-What does `useEffect` hook do? 
+What does `useEffect` hook do? I have to do some reading on both Hooks and the Context API, since I'm starting to get a little lost. 
