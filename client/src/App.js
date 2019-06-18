@@ -5,27 +5,32 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Alerts from './components/layouts/Alerts';
 
 import LinkState from './context/link/LinkState';
 import './App.css';
 import AuthState from './context/auth/authState';
+import AlertState from './context/alert/alertState';
 
 
 const App = () => {
   return (
     <AuthState>
       <LinkState>
-        <Router>
-          <Fragment>
-            <Navbar />
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-            </Switch>
-          </Fragment>
-        </Router>
+        <AlertState>
+          <Router>
+            <Fragment>
+              <Navbar />
+              <Alerts />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/about' component={About} />
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
+              </Switch>
+            </Fragment>
+          </Router>
+        </AlertState>
       </LinkState>
     </AuthState>
   )

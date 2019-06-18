@@ -1,10 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 
+import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
 const Register = props => {
 
     const authContext = useContext(AuthContext);
+    const alertContext = useContext(AlertContext);
+
+    const { setAlert } = alertContext;
 
 
     const { register, error, clearErrors, isAuthenticated } = authContext;
@@ -35,9 +39,9 @@ const Register = props => {
     const onSubmit = e => {
         e.preventDefault();
         if (name === '' || email === '' || password === '') {
-
+            setAlert('Please enter all fields', 'danger');
         } else if (password !== password2) {
-
+            setAlert('Passwords do not match');
         } else {
             register({
                 name,
