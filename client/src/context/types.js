@@ -1,7 +1,7 @@
+export const GET_LINKS = 'GET_LINKS';
+export const GET_LINK = 'GET_LINK';
 export const ADD_LINK = 'ADD_LINK';
 export const DELETE_LINK = 'DELETE_LINK';
-export const GET_LINK = 'GET_LINK';
-export const GET_LINKS = 'GET_LINKS';
 export const SET_CURRENT = 'SET CURRENT';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';
 export const UPDATE_LINK = 'UPDATE_LINK';

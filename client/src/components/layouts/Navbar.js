@@ -1,29 +1,63 @@
-import React from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../context/auth/authContext';
+import LinkContext from '../../context/link/LinkContext';
 
 const Navbar = ({ title, icon }) => {
+    const authContext = useContext(AuthContext);
+    const linkContext = useContext(LinkContext);
+
+    const { isAuthenticated, logout, user } = authContext;
+    const { clearLinks } = linkContext;
+
+    const onLogout = () => {
+        logout();
+        clearLinks();
+    };
+
+
+    const authLinks = (
+        <Fragment>
+            <li>Hello {user && user.name}</li>
+            <li>
+                <a onClick={onLogout} href='#!'>
+                    <i className='fas fa-sign-out-alt' />{' '}
+                    <span className='hide-sm'>Logout</span>
+                </a>
+            </li>
+        </Fragment>
+    );
+
+    const guestLinks = (
+        <Fragment>
+            <li>
+                <Link to='/register'>Register</Link>
+            </li>
+            <li>
+                <Link to='/login'>Login</Link>
+            </li>
+        </Fragment>
+    );
+
     return (
-        <div className="navbar bg-primary">
+        <div className='navbar bg-primary'>
             <h1>
-                {title}
+                <i className={icon} /> {title}
             </h1>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
         </div>
-    )
-}
+    );
+};
 
 Navbar.propTypes = {
     title: PropTypes.string.isRequired,
-    icon: PropTypes.string,
-}
+    icon: PropTypes.string
+};
 
 Navbar.defaultProps = {
-    title: 'Personal Link Saver',
+    title: 'Contact Keeper',
     icon: 'fas fa-id-card-alt'
-}
+};
 
-export default Navbar; 
+export default Navbar;

@@ -1,54 +1,79 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
 import uuid from 'uuid';
 import LinkContext from './LinkContext';
 import linkReducer from './LinkReducer';
 
 import {
+    GET_LINKS,
     ADD_LINK,
     DELETE_LINK,
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_LINK,
     FILTER_LINKS,
-    CLEAR_FILTER
+    CLEAR_LINKS,
+    CLEAR_FILTER,
+    LINK_ERROR
 } from '../types';
 
 const LinkState = props => {
     const initialState = {
-        links: [
-            {
-                title: 'Guardian Link',
-                url: 'https://guardian.co.uk',
-                category: 'News'
-            },
-            {
-                title: 'NYT',
-                url: 'https://nytimes.com',
-                category: 'News'
-            },
-            {
-                title: 'Udemy',
-                url: 'https://udemy.com',
-                category: 'Tech'
-            }
-        ],
+        links: null,
         current: null,
-        filtered: null
+        filtered: null,
+        error: null
     };
 
     const [state, dispatch] = useReducer(linkReducer, initialState);
 
+    //Get Links 
+    const getLinks = async () => {
+        try {
+            const res = await axios.get('/api/links');
+            dispatch({
+                type: GET_LINKS,
+                payload: res.data
+            });
+        } catch (err) {
+            console.log(err);
+            dispatch({
+                type: LINK_ERROR,
+                payload: err.response.msg
+            })
+        }
+    }
+
     //Add Link
-    const addLink = link => {
-        console.log(link);
-        link.id = uuid.v4();
-        dispatch({ type: ADD_LINK, payload: link })
+    const addLink = async link => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/api/links', link, config);
+            dispatch({ type: ADD_LINK, payload: res.data })
+        } catch (err) {
+            dispatch(
+                {
+                    type: LINK_ERROR,
+                    payload: err.response.msg
+                }
+            )
+        }
     }
 
     // Delete Link
     const deleteLink = id => {
         console.log(id);
         dispatch({ type: DELETE_LINK, payload: id })
+    }
+
+    //clear Links
+    const clearLinks = () => {
+        dispatch({ type: CLEAR_LINKS })
     }
 
     // Set Current Link
@@ -82,8 +107,11 @@ const LinkState = props => {
                 links: state.links,
                 current: state.current,
                 filtered: state.filtered,
+                error: state.error,
+                getLinks,
                 addLink,
                 deleteLink,
+                clearLinks,
                 setCurrent,
                 clearCurrent,
                 updateLink,

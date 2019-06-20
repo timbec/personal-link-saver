@@ -7,6 +7,8 @@ import {
     UPDATE_LINK,
     GET_LINKS,
     GET_LINK,
+    CLEAR_LINK,
+    LINK_ERROR,
     SET_CURRENT,
     CLEAR_CURRENT,
     FILTER_LINKS,
@@ -15,6 +17,12 @@ import {
 
 export default (state, action) => {
     switch (action.type) {
+        case GET_LINKS:
+            return {
+                ...state,
+                contacts: action.payload,
+                loading: false
+            }
         case SEARCH_LINKS:
             return {
                 ...state,
@@ -24,17 +32,28 @@ export default (state, action) => {
         case ADD_LINK:
             return {
                 ...state,
-                links: [...state.links, action.payload]
+                links: [action.payload, ...state.links],
+                loading: false
             }
         case UPDATE_LINK:
             return {
                 ...state,
-                links: state.links.map(link => link.id === action.payload.id ? action.payload : link)
+                links: state.links.map(link => link.id === action.payload.id ? action.payload : link),
+                loading: false
             }
         case DELETE_LINK:
             return {
                 ...state,
-                links: state.links.filter(link => link.id !== action.payload)
+                links: state.links.filter(link => link.id !== action.payload),
+                loading: false
+            }
+        case CLEAR_LINKS:
+            return {
+                ...state,
+                links: null,
+                filtered: null,
+                error: null,
+                current: null
             }
         case SET_CURRENT:
             return {
@@ -62,6 +81,11 @@ export default (state, action) => {
                 filter: null,
                 loading: false
             }
+        case LINK_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            };
         case GET_LINKS:
             return {
                 ...state,
