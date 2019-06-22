@@ -54,14 +54,18 @@ const LinkState = props => {
 
         try {
             const res = await axios.post('/api/links', link, config);
-            dispatch({ type: ADD_LINK, payload: res.data })
+            console.log(res.data); 
+            dispatch({ 
+                type: ADD_LINK, 
+                payload: res.data 
+            })
         } catch (err) {
-            dispatch(
-                {
-                    type: LINK_ERROR,
-                    payload: err.response.msg
-                }
-            )
+            console.log(err.response);
+            // dispatch({
+                
+            //         type: LINK_ERROR,
+            //         payload: err.response.msg
+            // })
         }
     }
 
